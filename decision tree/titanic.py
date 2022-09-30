@@ -1,5 +1,3 @@
-
-from matplotlib import test
 import pandas as pd
 df=pd.read_csv('titanic.csv')
 #print(df.head(10))
@@ -15,9 +13,9 @@ df=df.drop('Sex',axis='columns')
 #print(df)
 x=df.drop('SEX',axis='columns')
 x=df.fillna(df['Age'].mean())
-y=df['SEX']
+y=df['Survived']
 
-
+#print(x)
 
 from sklearn.model_selection import train_test_split
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2)
@@ -27,9 +25,9 @@ reg=DecisionTreeClassifier()
 reg.fit(x_train,y_train)
 
 predict=reg.predict(x_test)
+#print(y_test)
 
-from sklearn.metrics import mean_squared_error
-mse=mean_squared_error(y_test,predict)
-print(mse)
+print(reg.score(x_test,y_test))
+
 
 
